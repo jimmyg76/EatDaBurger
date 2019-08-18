@@ -1,0 +1,36 @@
+<header>
+	<h1>Burger Machine!</h1>
+</header>
+
+<div class="wrapper">
+	<div id="create-burger">
+		<form action="/" method="POST">
+			<input id="burger-name" type="text" name="burger_name" placeholder="Create a burger">
+			<button id="submit-btn" type="submit">Create!</button>
+		</form>
+	</div>
+
+	<section id="burgers-container">
+		<div id="burgers-available">
+			<h2>Burger Menu</h2>
+			{{#each burgers}}
+				{{#unless this.devoured}}
+				  <div class="burger">
+				    <form class="devour-burger-form" action="/{{id}}?_method=PUT" method="POST">
+				  		<button class="eat-btn">EAT</button>
+				    </form>
+						{{burger_name}} <span>#{{id}}</span>
+				  </div>
+				{{/unless}}
+			{{/each}}
+		</div>
+		<div id="burgers-devoured">
+			<h2>Burgers Eaten</h2>
+			{{#each burgers}}
+				{{#if this.devoured}}
+				  <div class="burger">{{burger_name}} <span>#{{id}}</span></div>
+				{{/if}}
+			{{/each}}
+		</div>
+	</section>
+</div>
